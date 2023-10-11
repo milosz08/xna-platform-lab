@@ -6,6 +6,7 @@ namespace XnaZal1
     public class GameController : AbstractGame
     {
         private float _timeRemaining = 0.0f;
+        private bool _isRotatingEnabled = false;
         private readonly static float TIME_PER_SPRITE = 5.0f;
 
         private GameTile[] _leftPickerTiles;
@@ -41,8 +42,7 @@ namespace XnaZal1
 
                 if (HasIntersectSelection())
                 {
-                    _selectedTile.IsHovered = true;
-                    _selectedTile.SetSelectedNumber(_leftPickerTiles[(int)pos.Y]); ;
+                    _selectedTile.SetSelectedNumber(_leftPickerTiles[(int)pos.Y]);
                 }
 
                 int spaceX = GameTexturesMap.SPRITE_SIZE + GameCanvas.DEF_MARGIN;
@@ -59,16 +59,29 @@ namespace XnaZal1
                 if (HasIntersectSelection())
                 {
                     GameTile gridPickTile = _gridTiles[(int)pos.X, (int)pos.Y];
-                    gridPickTile.SetSelectedNumber(_selectedTile);
-
-                    // TODO: add element rotation
+                    if (gridPickTile.Id == _selectedTile.Id && gridPickTile.Number != 0 && _isRotatingEnabled)
+                    {
+                        gridPickTile.IncreaseRotateAngle();
+                    }
+                    else
+                    {
+                        if (gridPickTile.Id != _selectedTile.Id)
+                        {
+                            gridPickTile.RotateAngle = 0;
+                        }
+                        gridPickTile.SetSelectedNumber(_selectedTile);
+                    }
                 }
-
+                _isRotatingEnabled = false;
                 _timeRemaining = TIME_PER_SPRITE;
             }
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
                 _timeRemaining = 0.0f;
+            }
+            if (mouseState.LeftButton == ButtonState.Released)
+            {
+                _isRotatingEnabled = true;
             }
             foreach (GameTile tile in _leftPickerTiles)
             {

@@ -24,7 +24,7 @@ namespace XnaZal1
 
         public void IncreaseRotateAngle()
         {
-            if (_rotateAngle == 360)
+            if (_rotateAngle == 270)
             {
                 _rotateAngle = 0;
             }
