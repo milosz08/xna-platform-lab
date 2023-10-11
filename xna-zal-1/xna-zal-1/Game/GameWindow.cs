@@ -7,8 +7,9 @@ namespace XnaZal1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private GameCanvas _gameCanvas;
+
         private GameController _gameController;
+        private GameCanvas _gameCanvas;
 
         public GameWindow()
         {
