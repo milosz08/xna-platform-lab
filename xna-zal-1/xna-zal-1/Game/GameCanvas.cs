@@ -106,7 +106,7 @@ namespace XnaZal1
             int halfGridTile = GRID_ELEMENT_SIZE / 2;
             int spaceX = GameTexturesMap.SPRITE_SIZE + DEF_MARGIN;
             int startPointX = ((width - GRID_ELEMENT_SIZE * GRID_ELEMENTS) / 2) + spaceX + halfGridTile;
-            if (startPointX <= spaceX)
+            if (((width - GRID_ELEMENT_SIZE * GRID_ELEMENTS) / 2) + spaceX <= spaceX)
             {
                 startPointX = GameTexturesMap.SPRITE_SIZE + DEF_MARGIN * 2 + halfGridTile;
             }
