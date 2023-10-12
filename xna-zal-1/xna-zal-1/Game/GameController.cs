@@ -5,18 +5,14 @@ namespace XnaZal1
 {
     public class GameController : AbstractGame
     {
-        private float _timeRemaining = 0.0f;
-        private bool _isRotatingEnabled = false;
-        private readonly static float TIME_PER_SPRITE = 5.0f;
+        private readonly static float TIME_PER_SPRITE = 1.0f;
 
         private GameTile[] _leftPickerTiles;
         private GameTile[,] _gridTiles;
         private GameTile _selectedTile;
-
-        private Vector2 dim = new();
-        private Vector2 size = new();
-        private Vector2 bounds = new();
-        private Vector2 pos = new();
+        private bool _isRotatingEnabled = false;
+        private float _timeRemaining = 0.0f;
+        private Vector2 dim = new(), size = new(), bounds = new(), pos = new();
 
         public GameController(GameWindow game) : base(game)
         {
@@ -28,7 +24,7 @@ namespace XnaZal1
             Point mousePos = new(mouseState.X, mouseState.Y);
             if (_timeRemaining == 0.0f)
             {
-                if (_selectedTile.Rect.Contains(mousePos))
+                if (_selectedTile.Rect.Contains(mousePos) && mouseState.LeftButton == ButtonState.Pressed)
                 {
                     _selectedTile.Reset();
                 }
@@ -40,7 +36,7 @@ namespace XnaZal1
                 bounds.X = 1;
                 bounds.Y = GameCanvas.MAX_NUMBER * 2;
 
-                if (HasIntersectSelection())
+                if (HasIntersectSelection() && mouseState.LeftButton == ButtonState.Pressed)
                 {
                     _selectedTile.SetSelectedNumber(_leftPickerTiles[(int)pos.Y]);
                 }
@@ -56,7 +52,7 @@ namespace XnaZal1
                 bounds.X = GameCanvas.GRID_ELEMENTS;
                 bounds.Y = GameCanvas.GRID_ELEMENTS;
 
-                if (HasIntersectSelection())
+                if (HasIntersectSelection() && mouseState.LeftButton == ButtonState.Pressed)
                 {
                     GameTile gridPickTile = _gridTiles[(int)pos.X, (int)pos.Y];
                     if (gridPickTile.Id == _selectedTile.Id && gridPickTile.Number != 0 && _isRotatingEnabled)

@@ -8,7 +8,7 @@ namespace XnaZal1
         public static readonly int SPRITE_SIZE = 100;
 
         private Texture2D _backgroundTexture, _numbersMapTexture, _questionMarkTexture;
-        private Texture2D[] _tileSprites;
+        private Rectangle[] _tileSprites;
 
         public GameTexturesMap(GameWindow game) : base(game)
         {
@@ -21,11 +21,11 @@ namespace XnaZal1
             _questionMarkTexture = _game.Content.Load<Texture2D>(@"question");
         }
 
-        public Texture2D GetTileSprite(int id)
+        public Rectangle GetTileSpriteBounds(int id)
         {
             if (id > _tileSprites.Length - 1 || id < 0)
             {
-                return new Texture2D(_game.GraphicsDevice, SPRITE_SIZE, SPRITE_SIZE);
+                return new Rectangle(0, 0, SPRITE_SIZE, SPRITE_SIZE);
             }
             return _tileSprites[id];
         }
@@ -34,20 +34,14 @@ namespace XnaZal1
         {
             int countOfCols = _numbersMapTexture.Bounds.Width / SPRITE_SIZE;
             int countOfRows = _numbersMapTexture.Bounds.Height / SPRITE_SIZE;
-            _tileSprites = new Texture2D[countOfCols * countOfRows];
+            _tileSprites = new Rectangle[countOfCols * countOfRows];
             int k = 0;
             for (int i = 0; i < countOfRows; i++)
             {
                 for (int j = 0; j < countOfCols; j++)
                 {
-                    _tileSprites[k] = new Texture2D(_game.GraphicsDevice, SPRITE_SIZE, SPRITE_SIZE);
-                    Rectangle coords = new Rectangle(j * SPRITE_SIZE, i * SPRITE_SIZE,
+                    _tileSprites[k++] = new Rectangle(j * SPRITE_SIZE, i * SPRITE_SIZE,
                         SPRITE_SIZE, SPRITE_SIZE);
-                    int spriteSize = SPRITE_SIZE * SPRITE_SIZE;
-                    Color[] data = new Color[spriteSize];
-                    _numbersMapTexture.GetData(0, coords, data, 0, spriteSize);
-                    _tileSprites[k].SetData(data);
-                    k++;
                 }
             }
         }

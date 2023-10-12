@@ -52,12 +52,13 @@ namespace XnaZal1
             }
             else
             {
-                _spriteBatch.Draw(_gameTextureMap.GetTileSprite(selected.Id),
-                    selected.Rect, Color.White);
+                _spriteBatch.Draw(_gameTextureMap.NumbersMap, selected.Rect,
+                    _gameTextureMap.GetTileSpriteBounds(selected.Id), Color.White);
             }
             foreach (GameTile number in _gameController.LeftPickerTiles)
             {
-                _spriteBatch.Draw(_gameTextureMap.GetTileSprite(number.Id), number.Rect,
+                _spriteBatch.Draw(_gameTextureMap.NumbersMap, number.Rect,
+                    _gameTextureMap.GetTileSpriteBounds(number.Id),
                     number.IsHovered ? Color.LightGray : Color.White);
             }
         }
@@ -83,6 +84,7 @@ namespace XnaZal1
                 {
                     GameTile number = _gameController.GridTiles[i, j];
                     Texture2D renderedTexture;
+                    Rectangle? innerRect = null;
                     number.Rect = GetGridRectangle(i, j);
                     if (number.Number == 0)
                     {
@@ -91,9 +93,10 @@ namespace XnaZal1
                     }
                     else
                     {
-                        renderedTexture = _gameTextureMap.GetTileSprite(number.Id);
+                        renderedTexture = _gameTextureMap.NumbersMap;
+                        innerRect = _gameTextureMap.GetTileSpriteBounds(number.Id);
                     }
-                    _spriteBatch.Draw(renderedTexture, number.Rect, null,
+                    _spriteBatch.Draw(renderedTexture, number.Rect, innerRect,
                         Color.White, MathHelper.ToRadians(number.RotateAngle), origin, SpriteEffects.None, 0);
                 }
             }
