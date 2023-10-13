@@ -85,10 +85,11 @@ namespace XnaZal1
                     GameTile number = _gameController.GridTiles[i, j];
                     Texture2D renderedTexture;
                     Rectangle? innerRect = null;
+                    int rotateAngle = number.RotateAngle;
                     number.Rect = GetGridRectangle(i, j);
                     if (number.Number == 0)
                     {
-                        number.RotateAngle = 0;
+                        rotateAngle = 0;
                         renderedTexture = _gameTextureMap.QuestionMark;
                     }
                     else
@@ -97,7 +98,7 @@ namespace XnaZal1
                         innerRect = _gameTextureMap.GetTileSpriteBounds(number.Id);
                     }
                     _spriteBatch.Draw(renderedTexture, number.Rect, innerRect,
-                        Color.White, MathHelper.ToRadians(number.RotateAngle), origin, SpriteEffects.None, 0);
+                        Color.White, MathHelper.ToRadians(rotateAngle), origin, SpriteEffects.None, 0);
                 }
             }
         }

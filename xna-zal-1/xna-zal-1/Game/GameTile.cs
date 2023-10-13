@@ -38,7 +38,6 @@ namespace XnaZal1
         {
             _id = 0;
             _number = 0;
-            _rotateAngle = 0;
         }
 
         public int Id

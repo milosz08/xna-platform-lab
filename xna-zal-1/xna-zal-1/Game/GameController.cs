@@ -61,10 +61,10 @@ namespace XnaZal1
                     }
                     else
                     {
-                        if (gridPickTile.Id != _selectedTile.Id)
-                        {
-                            gridPickTile.RotateAngle = 0;
-                        }
+                        //if (gridPickTile.Id != _selectedTile.Id)
+                        //{
+                        //    gridPickTile.RotateAngle = 0;
+                        //}
                         gridPickTile.SetSelectedNumber(_selectedTile);
                     }
                 }
