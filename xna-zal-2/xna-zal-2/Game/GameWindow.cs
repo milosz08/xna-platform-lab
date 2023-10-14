@@ -8,16 +8,21 @@ namespace XnaZal2
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private GameController _gameController;
-        private GameCanvas _gameCanvas;
+        private GameState _state;
+        private GameController _controller;
+        private GameCanvas _canvas;
+
+        public static readonly int WIDTH = 1024;
+        public static readonly int HEIGHT = 768;
 
         public GameWindow()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 800;
-            _graphics.PreferredBackBufferHeight = 600;
+            _graphics.PreferredBackBufferWidth = WIDTH;
+            _graphics.PreferredBackBufferHeight = HEIGHT;
 
             Content.RootDirectory = "Content";
+            Window.Title = "Pong";
 
             IsMouseVisible = true;
             Window.AllowUserResizing = false;
@@ -31,21 +36,29 @@ namespace XnaZal2
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _gameController = new GameController(this);
-            _gameCanvas = new GameCanvas(this, _gameController, _spriteBatch);
+            _state = new GameState();
+            _controller = new GameController(this, _state);
+            _canvas = new GameCanvas(this, _state, _spriteBatch);
+
+            _canvas.LoadAndInitializedTextures();
+            _canvas.InitPaddles();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            _gameController.ExitOnEsc();
-            _gameController.Interact();
+            _controller.ExitOnEsc();
+            _controller.Interact(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin();
-
+            _canvas.DrawBackground();
+            _canvas.DrawPaddles();
+            _canvas.DrawBall();
+            _canvas.DrawFlames();
+            _canvas.DrawPointsInfo();
             _spriteBatch.End();
             base.Draw(gameTime);
         }
