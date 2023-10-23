@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using XnaZal3.Model;
 
-namespace XnaZal3
+namespace XnaZal3.Model
 {
     public class GridMeshModel : AbstractMeshModel<int>
     {
