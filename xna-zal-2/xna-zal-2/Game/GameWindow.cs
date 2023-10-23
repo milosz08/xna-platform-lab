@@ -22,7 +22,6 @@ namespace XnaZal2
             _graphics.PreferredBackBufferHeight = HEIGHT;
 
             Content.RootDirectory = "Content";
-            Window.Title = "Pong";
 
             IsMouseVisible = true;
             Window.AllowUserResizing = false;
