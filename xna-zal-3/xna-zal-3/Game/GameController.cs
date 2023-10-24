@@ -12,7 +12,7 @@ namespace XnaZal3
         private static readonly float TOP_TOLERANCE = 15f;                          // blokada zwiększania siatki
 
         private bool _isXpressed, _isBpressed;
-        private Matrix viewMatrix, projection;
+        private Matrix _viewMatrix, _projection;
 
         private float _angleX = INIT_CAMERA_ANGLE.X;
         private float _angleY = INIT_CAMERA_ANGLE.Y;
@@ -29,13 +29,13 @@ namespace XnaZal3
             ChangeDrawingBackgroundAndMesh(keyboardState);
             ChangeGridMeshAngle(keyboardState);
 
-            viewMatrix = Matrix.CreateLookAt(new Vector3(
+            _viewMatrix = Matrix.CreateLookAt(new Vector3(
                 _angleZ * 0.1f, _angleZ * 1.0f, _angleZ * 6.0f), Vector3.Zero, Vector3.Up);
 
-            viewMatrix = Matrix.CreateRotationX(_angleX) *
-                Matrix.CreateRotationY(_angleY) * viewMatrix;
+            _viewMatrix = Matrix.CreateRotationX(_angleX) *
+                Matrix.CreateRotationY(_angleY) * _viewMatrix;
 
-            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50),
+            _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50),
                 _game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);
 
             TransformCubeObject(_state.SunCube);
@@ -48,14 +48,14 @@ namespace XnaZal3
             TransformCubeObject(_state.MoonCube);
             TransformCubeObject(_state.MarsCube);
 
-            _state.GridMesh.Effect.View = viewMatrix;
-            _state.GridMesh.Effect.Projection = projection;
+            _state.GridMesh.Effect.View = _viewMatrix;
+            _state.GridMesh.Effect.Projection = _projection;
         }
 
         private void TransformCubeObject<T>(ModelEffectBinder<T> binder)
             where T : AbstractCubeModel
         {
-            binder.Effect.View = viewMatrix;
+            binder.Effect.View = _viewMatrix;
             binder.Effect.Projection = binder.Model.GenerateProjectionMatrix(_game);
             binder.Effect.World = binder.Model.GenerateWorldMatrix();
         }
