@@ -94,7 +94,7 @@ namespace XnaZal3.Model
             return cubeIndices;
         }
 
-        public virtual Matrix IncreaseAroundState()
+        public virtual Matrix IncreaseRotateAroundState()
         {
             if (_rotateAroundState >= 360)
             {
@@ -117,7 +117,7 @@ namespace XnaZal3.Model
                 _rotateState = 0;
             }
             else
-        {
+            {
                 _rotateState++;
             }
             float radians = MathHelper.ToRadians(_rotateState);

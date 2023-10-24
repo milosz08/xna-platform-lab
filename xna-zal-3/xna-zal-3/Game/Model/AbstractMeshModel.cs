@@ -14,7 +14,7 @@ namespace XnaZal3.Model
             _size = size;
         }
 
-        public Matrix GetProjectionMatrix(GameWindow game)
+        public Matrix GenerateProjectionMatrix(GameWindow game)
         {
             return Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50),
                 game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);

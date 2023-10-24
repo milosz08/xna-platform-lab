@@ -15,7 +15,7 @@ namespace XnaZal3.Model
             _earthPos = Vector2.Zero;
         }
 
-        public override Matrix IncreaseAroundState()
+        public override Matrix IncreaseRotateAroundState()
         {
             if (_rotateAroundState >= 360)
             {
@@ -32,7 +32,7 @@ namespace XnaZal3.Model
             return Matrix.CreateTranslation(x + _earthPos.X, y, z + _earthPos.Y);
         }
 
-        public void SetEarhPos(Vector2 pos)
+        public void SetEarthPos(Vector2 pos)
         {
             _earthPos.X = pos.X;
             _earthPos.Y = pos.Y;
