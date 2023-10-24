@@ -30,9 +30,14 @@ namespace XnaZal3
             ChangeDrawingBackgroundAndMesh(keyboardState);
             ChangeGridMeshAngle(keyboardState);
 
-            viewMatrix = Matrix.CreateLookAt(new Vector3(_angleZ * 0.1f, _angleZ * 1.0f, _angleZ * 6.0f), Vector3.Zero, Vector3.Up);
-            viewMatrix = Matrix.CreateRotationX(_angleX) * Matrix.CreateRotationY(_angleY) * viewMatrix;
-            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50), _game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);
+            viewMatrix = Matrix.CreateLookAt(new Vector3(
+                _angleZ * 0.1f, _angleZ * 1.0f, _angleZ * 6.0f), Vector3.Zero, Vector3.Up);
+
+            viewMatrix = Matrix.CreateRotationX(_angleX) *
+                Matrix.CreateRotationY(_angleY) * viewMatrix;
+
+            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50),
+                _game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);
 
             TransformCubeObject(_state.SunCube);
             TransformCubeObject(_state.MercuryCube);
