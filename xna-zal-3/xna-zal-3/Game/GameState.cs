@@ -7,59 +7,59 @@ namespace XnaZal3
         public bool HideMesh { get; set; }
         public bool EmptyBackground { get; set; }
 
-        private readonly ModelEffectBinder<GridMeshModel> _gridMeshModel;
-        private readonly ModelEffectBinder<SunCubeModel> _sunCubeModel;
-        private readonly ModelEffectBinder<MercuryCubeModel> _mercuryCubeModel;
-        private readonly ModelEffectBinder<VenusCubeModel> _venusCubeModel;
-        private readonly ModelEffectBinder<EarthCubeModel> _earthCubeModel;
-        private readonly ModelEffectBinder<MoonCubeModel> _moonCubeModel;
-        private readonly ModelEffectBinder<MarsCubeModel> _marsCubeModel;
+        private readonly ModelEffectBinder<GridMeshModel> _gridMesh;
+        private readonly ModelEffectBinder<SunCubeModel> _sunCube;
+        private readonly ModelEffectBinder<MercuryCubeModel> _mercuryCube;
+        private readonly ModelEffectBinder<VenusCubeModel> _venusCube;
+        private readonly ModelEffectBinder<EarthCubeModel> _earthCube;
+        private readonly ModelEffectBinder<MoonCubeModel> _moonCube;
+        private readonly ModelEffectBinder<MarsCubeModel> _marsCube;
 
         public GameState(GameWindow game)
         {
-            _gridMeshModel = new ModelEffectBinder<GridMeshModel>(new GridMeshModel(), game);
-            _sunCubeModel = new ModelEffectBinder<SunCubeModel>(new SunCubeModel(), game);
-            _sunCubeModel = new ModelEffectBinder<SunCubeModel>(new SunCubeModel(), game);
-            _mercuryCubeModel = new ModelEffectBinder<MercuryCubeModel>(new MercuryCubeModel(), game);
-            _venusCubeModel = new ModelEffectBinder<VenusCubeModel>(new VenusCubeModel(), game);
-            _earthCubeModel = new ModelEffectBinder<EarthCubeModel>(new EarthCubeModel(), game);
-            _moonCubeModel = new ModelEffectBinder<MoonCubeModel>(new MoonCubeModel(), game);
-            _marsCubeModel = new ModelEffectBinder<MarsCubeModel>(new MarsCubeModel(), game);
+            _gridMesh = new ModelEffectBinder<GridMeshModel>(new GridMeshModel(), game);
+            _sunCube = new ModelEffectBinder<SunCubeModel>(new SunCubeModel(), game);
+            _sunCube = new ModelEffectBinder<SunCubeModel>(new SunCubeModel(), game);
+            _mercuryCube = new ModelEffectBinder<MercuryCubeModel>(new MercuryCubeModel(), game);
+            _venusCube = new ModelEffectBinder<VenusCubeModel>(new VenusCubeModel(), game);
+            _earthCube = new ModelEffectBinder<EarthCubeModel>(new EarthCubeModel(), game);
+            _moonCube = new ModelEffectBinder<MoonCubeModel>(new MoonCubeModel(), game);
+            _marsCube = new ModelEffectBinder<MarsCubeModel>(new MarsCubeModel(), game);
         }
 
         public ModelEffectBinder<GridMeshModel> GridMesh
         {
-            get => _gridMeshModel;
+            get => _gridMesh;
         }
 
         public ModelEffectBinder<SunCubeModel> SunCube
         {
-            get => _sunCubeModel;
+            get => _sunCube;
         }
 
         public ModelEffectBinder<MercuryCubeModel> MercuryCube
         {
-            get => _mercuryCubeModel;
+            get => _mercuryCube;
         }
 
         public ModelEffectBinder<VenusCubeModel> VenusCube
         {
-            get => _venusCubeModel;
+            get => _venusCube;
         }
 
         public ModelEffectBinder<EarthCubeModel> EarthCube
         {
-            get => _earthCubeModel;
+            get => _earthCube;
         }
 
         public ModelEffectBinder<MoonCubeModel> MoonCube
         {
-            get => _moonCubeModel;
+            get => _moonCube;
         }
 
         public ModelEffectBinder<MarsCubeModel> MarsCube
         {
-            get => _marsCubeModel;
+            get => _marsCube;
         }
     }
 }
