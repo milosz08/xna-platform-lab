@@ -40,6 +40,11 @@ namespace XnaZal3
         public void DrawPlanets3D()
         {
             _state.SunCubeEffect.DrawIndexPrimitives(_state.SunCubeModel);
+            _state.MercuryCubeEffect.DrawIndexPrimitives(_state.MercuryCubeModel);
+            _state.VenusCubeEffect.DrawIndexPrimitives(_state.VenusCubeModel);
+            _state.EarthCubeEffect.DrawIndexPrimitives(_state.EarthCubeModel);
+            _state.MarsCubeEffect.DrawIndexPrimitives(_state.MarsCubeModel);
+            _state.MoonCubeEffect.DrawIndexPrimitives(_state.MoonCubeModel);
         }
 
         public void PerpareDrawer3D()

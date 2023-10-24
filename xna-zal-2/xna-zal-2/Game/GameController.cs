@@ -10,8 +10,8 @@ namespace XnaZal2
         private readonly GameState _state;
 
         public static readonly int HIGHLIGHT_TIME = 20;         // czas podświetlenia paletek
-        public static readonly int BALL_MS_PER_FRAME = 16;      // szybkość animacji piłki
-        public static readonly int FLAMES_MS_PER_FRAME = 16;    // szybkość animacji płomieni
+        public static readonly int BALL_MS_PER_FRAME = 50;     // szybkość animacji piłki
+        public static readonly int FLAMES_MS_PER_FRAME = 100;   // szybkość animacji płomieni
         public static readonly int PADDLE_MOVE_SPEED = 4;       // prędkość poruszania paletkami
         public static readonly int BALL_VELOCITY = 3;           // prędkość początkowa piłki
         public static readonly int SWITCH_TOLERANCE = 50;

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace XnaZal3.Model
 {
@@ -11,6 +12,12 @@ namespace XnaZal3.Model
         {
             _vertices = new VertexPositionColor[8];
             _size = size;
+        }
+
+        public Matrix GetProjectionMatrix(GameWindow game)
+        {
+            return Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50),
+                game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);
         }
 
         public VertexPositionColor[] Vertices

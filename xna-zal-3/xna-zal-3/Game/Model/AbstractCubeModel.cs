@@ -1,16 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace XnaZal3.Model
 {
     public abstract class AbstractCubeModel : AbstractMeshModel<float>
     {
         protected short[] _cubeIndices;
-        protected Color[] _colors;
+        protected Color _gradColor1, _gradColor2;
         protected float _radius;
         protected float _rotationSpeed;
         protected float _floatAroundSpeed;
         protected float _xDeviation;
+
+        protected float _rotateAroundState = 0f;
+        protected Matrix _rotatingState = Matrix.Identity;
+        protected Vector2 _currentPos = Vector2.Zero;
 
         private Vector3[] _vertex;
         private readonly short[,] _cubeIndices2D = new short[6, 6]
@@ -24,21 +29,22 @@ namespace XnaZal3.Model
         };
 
         protected AbstractCubeModel(float cubeSize, float radius, float rotationSpeed,
-            float floatAroundSpeed, float xDeviation, Color[] colors)
+            float floatAroundSpeed, float xDeviation, Color gradColor1, Color gradColor2)
             : base(cubeSize)
         {
             _radius = radius;
             _rotationSpeed = rotationSpeed;
             _floatAroundSpeed = floatAroundSpeed;
             _xDeviation = xDeviation;
-            _colors = colors;
+            _gradColor1 = gradColor1;
+            _gradColor2 = gradColor2;
             InitMeshStructure();
             _cubeIndices = FlatCubeIndicatedArray();
         }
 
         protected AbstractCubeModel(float cubeSize, float rotationSpeed, float xDeviation,
-            Color[] colors)
-            : this(cubeSize, 0f, rotationSpeed, 0f, xDeviation, colors)
+            Color gradColor1, Color gradColor2)
+            : this(cubeSize, 0f, rotationSpeed, 0f, xDeviation, gradColor1, gradColor2)
         {
         }
 
@@ -56,9 +62,20 @@ namespace XnaZal3.Model
                 new Vector3(-halfSize, halfSize, halfSize),
                 new Vector3(halfSize, halfSize, halfSize),
             };
+            Color[] colors = new Color[8]
+            {
+                _gradColor1,
+                _gradColor2,
+                _gradColor2,
+                _gradColor1,
+                _gradColor2,
+                _gradColor1,
+                _gradColor1,
+                _gradColor2,
+            };
             for (int i = 0; i < 8; i++)
             {
-                _vertices[i] = new VertexPositionColor(_vertex[i], _colors[i]);
+                _vertices[i] = new VertexPositionColor(_vertex[i], colors[i]);
             }
         }
 
@@ -77,14 +94,30 @@ namespace XnaZal3.Model
             return cubeIndices;
         }
 
+        public virtual Matrix IncreaseAroundState()
+        {
+            if (_rotateAroundState >= 360)
+            {
+                _rotateAroundState = 0;
+            }
+            else
+            {
+                _rotateAroundState += _floatAroundSpeed;
+            }
+            float radians = MathHelper.ToRadians(_rotateAroundState);
+            _currentPos.X = _radius * (float)Math.Cos(radians);
+            _currentPos.Y = _radius * 1.2f * (float)Math.Sin(radians);
+            return Matrix.CreateTranslation(_currentPos.X, 0, _currentPos.Y);
+        }
+
+        public Matrix XDeviationMatrix
+        {
+            get => Matrix.CreateRotationX(_xDeviation);
+        }
+
         public short[] CubeIndices
         {
             get => _cubeIndices;
-        }
-
-        public float Radius
-        {
-            get => _radius;
         }
 
         public float RotationSpeed
@@ -92,14 +125,15 @@ namespace XnaZal3.Model
             get => _rotationSpeed;
         }
 
-        public float FloatAroundSpeed
+        public Matrix RotatingState
         {
-            get => _floatAroundSpeed;
+            get => _rotatingState;
+            set { _rotatingState = value; }
         }
 
-        public float XDeviation
+        public Vector2 CurrentPos
         {
-            get => _xDeviation;
+            get => _currentPos;
         }
     }
 }

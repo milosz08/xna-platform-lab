@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using XnaZal3.Model;
 
 namespace XnaZal3
 {
@@ -17,7 +18,6 @@ namespace XnaZal3
         private float _angleZ = INIT_CAMERA_ANGLE.Z;
 
         Matrix viewMatrix, projection;
-        Matrix rotatingSquareWorldMatrix = Matrix.Identity;
 
         public GameController(GameWindow game, GameState state)
             : base(game, state)
@@ -30,23 +30,31 @@ namespace XnaZal3
             ChangeDrawingBackgroundAndMesh(keyboardState);
             ChangeGridMeshAngle(keyboardState);
 
-            ////////////////
-
-            viewMatrix = Matrix.CreateLookAt(
-                new Vector3(_angleZ * 0.1f, _angleZ * 1.0f, _angleZ * 6.0f),
-            Vector3.Zero, Vector3.Up);
-
+            viewMatrix = Matrix.CreateLookAt(new Vector3(_angleZ * 0.1f, _angleZ * 1.0f, _angleZ * 6.0f), Vector3.Zero, Vector3.Up);
             viewMatrix = Matrix.CreateRotationX(_angleX) * Matrix.CreateRotationY(_angleY) * viewMatrix;
             projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50), _game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);
 
-            _state.SunCubeEffect.World = (rotatingSquareWorldMatrix *= Matrix.CreateRotationY(_state.SunCubeModel.RotationSpeed)) * Matrix.CreateRotationX(_state.SunCubeModel.XDeviation);
-            _state.SunCubeEffect.View = viewMatrix;
-            _state.SunCubeEffect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50), _game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);
+            TransformCubeObject(_state.SunCubeEffect, _state.SunCubeModel);
+            TransformCubeObject(_state.MercuryCubeEffect, _state.MercuryCubeModel);
+            TransformCubeObject(_state.VenusCubeEffect, _state.VenusCubeModel);
+            TransformCubeObject(_state.EarthCubeEffect, _state.EarthCubeModel);
+
+            _state.MoonCubeModel.SetEarhPos(_state.EarthCubeModel.CurrentPos);
+
+            TransformCubeObject(_state.MarsCubeEffect, _state.MarsCubeModel);
+            TransformCubeObject(_state.MoonCubeEffect, _state.MoonCubeModel);
 
             _state.MeshEffect.View = viewMatrix;
-            _state.MeshEffect.Projection = projection;
+            _state.MeshEffect.Projection = projection;           
+        }
 
-            ////////////////
+        private void TransformCubeObject(GameSimpleEffect effect, AbstractCubeModel model)
+        {
+            effect.View = viewMatrix;
+            effect.Projection = model.GetProjectionMatrix(_game);
+
+            effect.World = (model.RotatingState *= Matrix.CreateRotationY(_state.VenusCubeModel.RotationSpeed))
+                * model.XDeviationMatrix * model.IncreaseAroundState();
         }
 
         private void ChangeGridMeshAngle(KeyboardState keyboardState)
