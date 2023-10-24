@@ -26,10 +26,5 @@ namespace XnaZal3.Model
         {
             get => _vertices;
         }
-
-        public T Size
-        {
-            get => _size;
-        }
     }
 }

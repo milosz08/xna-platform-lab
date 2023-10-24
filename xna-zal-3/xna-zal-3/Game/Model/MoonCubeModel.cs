@@ -37,10 +37,5 @@ namespace XnaZal3.Model
             _earthPos.X = pos.X;
             _earthPos.Y = pos.Y;
         }
-
-        public Vector2 EartPos
-        {
-            get => _earthPos;
-        }
     }
 }

@@ -131,17 +131,6 @@ namespace XnaZal3.Model
             get => _cubeIndices;
         }
 
-        public float RotationSpeed
-        {
-            get => _rotationSpeed;
-        }
-
-        public Matrix RotatingState
-        {
-            get => _rotatingState;
-            set { _rotatingState = value; }
-        }
-
         public Vector2 CurrentPos
         {
             get => _currentPos;
