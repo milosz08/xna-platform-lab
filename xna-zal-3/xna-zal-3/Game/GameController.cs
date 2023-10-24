@@ -60,14 +60,14 @@ namespace XnaZal3
         {
             if (_angleZ >= BOTTOM_TOLERANCE)
             {
-                if (keyboardState.IsKeyDown(Keys.A))
+                if (keyboardState.IsKeyDown(Keys.Q))
                 {
                     _angleZ -= ANGLE_ROTATION_SPEED;
                 }
             }
             if (_angleZ <= TOP_TOLERANCE)
             {
-                if (keyboardState.IsKeyDown(Keys.Q))
+                if (keyboardState.IsKeyDown(Keys.A))
                 {
                     _angleZ += ANGLE_ROTATION_SPEED;
                 }
