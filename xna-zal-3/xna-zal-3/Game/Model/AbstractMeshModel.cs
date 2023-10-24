@@ -20,6 +20,8 @@ namespace XnaZal3.Model
                 game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);
         }
 
+        protected abstract void InitMeshStructure();
+
         public VertexPositionColor[] Vertices
         {
             get => _vertices;

@@ -48,7 +48,7 @@ namespace XnaZal3.Model
         {
         }
 
-        private void InitMeshStructure()
+        protected override void InitMeshStructure()
         {
             float halfSize = _size / 2;
             _vertex = new Vector3[8]

@@ -19,7 +19,7 @@ namespace XnaZal3
         {
             if (_state.EmptyBackground)
             {
-                _game.GraphicsDevice.Clear(Color.Honeydew);
+                _game.GraphicsDevice.Clear(Color.Black);
             }
             else
             {

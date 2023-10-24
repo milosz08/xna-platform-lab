@@ -12,12 +12,11 @@ namespace XnaZal3
         private static readonly float TOP_TOLERANCE = 15f;                          // blokada zwiększania siatki
 
         private bool _isXpressed, _isBpressed;
+        private Matrix viewMatrix, projection;
 
         private float _angleX = INIT_CAMERA_ANGLE.X;
         private float _angleY = INIT_CAMERA_ANGLE.Y;
         private float _angleZ = INIT_CAMERA_ANGLE.Z;
-
-        Matrix viewMatrix, projection;
 
         public GameController(GameWindow game, GameState state)
             : base(game, state)

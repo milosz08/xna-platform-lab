@@ -19,7 +19,7 @@ namespace XnaZal3.Model
         {
         }
 
-        protected void InitMeshStructure()
+        protected override void InitMeshStructure()
         {
             _vertices = new VertexPositionColor[(_size + 1) * 4];
             for (int i = 0; i <= _size; i++)
