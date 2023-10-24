@@ -6,7 +6,6 @@ namespace XnaZal3.Model
 {
     public abstract class AbstractCubeModel : AbstractMeshModel<float>
     {
-        protected short[] _cubeIndices;
         protected Color _gradColor1, _gradColor2;
         protected float _radius;
         protected float _rotationSpeed;
@@ -17,16 +16,17 @@ namespace XnaZal3.Model
         protected Matrix _rotatingState = Matrix.Identity;
         protected Vector2 _currentPos = Vector2.Zero;
 
-        private Vector3[] _vertex;
-        private readonly short[,] _cubeIndices2D = new short[6, 6]
+        protected readonly short[] _cubeIndices = new short[36]
         {
-            { 0, 1, 2, 2, 1, 3 },
-            { 1, 5, 3, 3, 5, 7 },
-            { 5, 4, 7, 7, 4, 6 },
-            { 4, 0, 6, 6, 0, 2 },
-            { 2, 3, 6, 6, 3, 7 },
-            { 4, 5, 0, 0, 5, 1 },
+            0, 1, 2, 2, 1, 3,
+            1, 5, 3, 3, 5, 7,
+            5, 4, 7, 7, 4, 6,
+            4, 0, 6, 6, 0, 2,
+            2, 3, 6, 6, 3, 7,
+            4, 5, 0, 0, 5, 1,
         };
+
+        private Vector3[] _vertex;
 
         protected AbstractCubeModel(float cubeSize, float radius, float rotationSpeed,
             float floatAroundSpeed, float xDeviation, Color gradColor1, Color gradColor2)
@@ -39,7 +39,6 @@ namespace XnaZal3.Model
             _gradColor1 = gradColor1;
             _gradColor2 = gradColor2;
             InitMeshStructure();
-            _cubeIndices = FlatCubeIndicatedArray();
         }
 
         protected AbstractCubeModel(float cubeSize, float rotationSpeed, float xDeviation,
@@ -77,21 +76,6 @@ namespace XnaZal3.Model
             {
                 _vertices[i] = new VertexPositionColor(_vertex[i], colors[i]);
             }
-        }
-
-        private short[] FlatCubeIndicatedArray()
-        {
-            short[] cubeIndices = new short[_cubeIndices2D.GetLength(0) *
-                _cubeIndices2D.GetLength(1)];
-            int k = 0;
-            for (int i = 0; i < _cubeIndices2D.GetLength(0); i++)
-            {
-                for (int j = 0; j < _cubeIndices2D.GetLength(1); j++)
-                {
-                    cubeIndices[k++] = _cubeIndices2D[i, j];
-                }
-            }
-            return cubeIndices;
         }
 
         public virtual Matrix IncreaseRotateAroundState()
