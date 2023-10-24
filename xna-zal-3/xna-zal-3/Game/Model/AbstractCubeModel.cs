@@ -13,7 +13,7 @@ namespace XnaZal3.Model
         protected float _floatAroundSpeed;
         protected float _xDeviation;
 
-        protected float _rotateAroundState = 0f;
+        protected float _rotateAroundState = 0f, _rotateState = 0f;
         protected Matrix _rotatingState = Matrix.Identity;
         protected Vector2 _currentPos = Vector2.Zero;
 
@@ -110,9 +110,21 @@ namespace XnaZal3.Model
             return Matrix.CreateTranslation(_currentPos.X, 0, _currentPos.Y);
         }
 
-        public Matrix XDeviationMatrix
+        public Matrix GenerateWorldMatrix()
         {
-            get => Matrix.CreateRotationX(_xDeviation);
+            if (_rotateState >= 360)
+            {
+                _rotateState = 0;
+            }
+            else
+        {
+                _rotateState++;
+            }
+            float radians = MathHelper.ToRadians(_rotateState);
+            float x = _rotationSpeed * (float)Math.Cos(radians);
+            float y = _rotationSpeed * 1.2f * (float)Math.Sin(radians);
+            return (_rotatingState *= Matrix.CreateRotationY(y)
+                * Matrix.CreateRotationX(x)) * IncreaseRotateAroundState();
         }
 
         public short[] CubeIndices
