@@ -121,9 +121,8 @@ namespace XnaZal3.Model
                 _rotateState++;
             }
             float radians = MathHelper.ToRadians(_rotateState);
-            float x = _rotationSpeed * (float)Math.Cos(radians);
-            float y = _rotationSpeed * 1.2f * (float)Math.Sin(radians);
-            return (_rotatingState *= Matrix.CreateRotationY(y)
+            float x = _rotationSpeed * 1.2f * (float)Math.Cos(radians);
+            return (_rotatingState *= Matrix.CreateRotationY(_rotationSpeed)
                 * Matrix.CreateRotationX(x)) * IncreaseRotateAroundState();
         }
 
