@@ -7,75 +7,59 @@ namespace XnaZal3
         public bool HideMesh { get; set; }
         public bool EmptyBackground { get; set; }
 
-        public GridMeshModel GridMeshModel { get; set; }
-        public SunCubeModel SunCubeModel { get; set; }
-        public MercuryCubeModel MercuryCubeModel { get; set; }
-        public VenusCubeModel VenusCubeModel { get; set; }
-        public EarthCubeModel EarthCubeModel { get; set; }
-        public MarsCubeModel MarsCubeModel { get; set; }
-        public MoonCubeModel MoonCubeModel { get; set; }
-
-        private GameSimpleEffect
-            _meshEffect,
-            _sunCubeEffect,
-            _mercuryCubeEffect,
-            _venusCubeEffect,
-            _earthCubeEffect,
-            _marsCubeEffect,
-            _moonCubeEffect;
+        public ModelEffectBinder<GridMeshModel> _gridMeshModel;
+        public ModelEffectBinder<SunCubeModel> _sunCubeModel;
+        public ModelEffectBinder<MercuryCubeModel> _mercuryCubeModel;
+        public ModelEffectBinder<VenusCubeModel> _venusCubeModel;
+        public ModelEffectBinder<EarthCubeModel> _earthCubeModel;
+        public ModelEffectBinder<MoonCubeModel> _moonCubeModel;
+        public ModelEffectBinder<MarsCubeModel> _marsCubeModel;
 
         public GameState(GameWindow game)
         {
-            SunCubeModel = new SunCubeModel();
-            GridMeshModel = new GridMeshModel();
-            MercuryCubeModel = new MercuryCubeModel();
-            VenusCubeModel = new VenusCubeModel();
-            EarthCubeModel = new EarthCubeModel();
-            MarsCubeModel = new MarsCubeModel();
-            MoonCubeModel = new MoonCubeModel();
-
-            _meshEffect = new GameSimpleEffect(game.GraphicsDevice);
-            _sunCubeEffect = new GameSimpleEffect(game.GraphicsDevice);
-            _mercuryCubeEffect = new GameSimpleEffect(game.GraphicsDevice);
-            _venusCubeEffect = new GameSimpleEffect(game.GraphicsDevice);
-            _earthCubeEffect = new GameSimpleEffect(game.GraphicsDevice);
-            _marsCubeEffect = new GameSimpleEffect(game.GraphicsDevice);
-            _moonCubeEffect = new GameSimpleEffect(game.GraphicsDevice);
+            _gridMeshModel = new ModelEffectBinder<GridMeshModel>(new GridMeshModel(), game);
+            _sunCubeModel = new ModelEffectBinder<SunCubeModel>(new SunCubeModel(), game);
+            _sunCubeModel = new ModelEffectBinder<SunCubeModel>(new SunCubeModel(), game);
+            _mercuryCubeModel = new ModelEffectBinder<MercuryCubeModel>(new MercuryCubeModel(), game);
+            _venusCubeModel = new ModelEffectBinder<VenusCubeModel>(new VenusCubeModel(), game);
+            _earthCubeModel = new ModelEffectBinder<EarthCubeModel>(new EarthCubeModel(), game);
+            _moonCubeModel = new ModelEffectBinder<MoonCubeModel>(new MoonCubeModel(), game);
+            _marsCubeModel = new ModelEffectBinder<MarsCubeModel>(new MarsCubeModel(), game);
         }
 
-        public GameSimpleEffect MeshEffect
+        public ModelEffectBinder<GridMeshModel> GridMesh
         {
-            get => _meshEffect;
+            get => _gridMeshModel;
         }
 
-        public GameSimpleEffect SunCubeEffect
+        public ModelEffectBinder<SunCubeModel> SunCube
         {
-            get => _sunCubeEffect;
+            get => _sunCubeModel;
         }
 
-        public GameSimpleEffect MercuryCubeEffect
+        public ModelEffectBinder<MercuryCubeModel> MercuryCube
         {
-            get => _mercuryCubeEffect;
+            get => _mercuryCubeModel;
         }
 
-        public GameSimpleEffect VenusCubeEffect
+        public ModelEffectBinder<VenusCubeModel> VenusCube
         {
-            get => _venusCubeEffect;
+            get => _venusCubeModel;
         }
 
-        public GameSimpleEffect EarthCubeEffect
+        public ModelEffectBinder<EarthCubeModel> EarthCube
         {
-            get => _earthCubeEffect;
+            get => _earthCubeModel;
         }
 
-        public GameSimpleEffect MarsCubeEffect
+        public ModelEffectBinder<MoonCubeModel> MoonCube
         {
-            get => _marsCubeEffect;
+            get => _moonCubeModel;
         }
 
-        public GameSimpleEffect MoonCubeEffect
+        public ModelEffectBinder<MarsCubeModel> MarsCube
         {
-            get => _moonCubeEffect;
+            get => _marsCubeModel;
         }
     }
 }

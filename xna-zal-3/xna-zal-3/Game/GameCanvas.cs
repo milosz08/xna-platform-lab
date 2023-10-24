@@ -33,18 +33,18 @@ namespace XnaZal3
         {
             if (!_state.HideMesh)
             {
-                _state.MeshEffect.DrawPrimitives(_state.GridMeshModel.Vertices);
+                _state.GridMesh.Effect.DrawPrimitives(_state.GridMesh.Model.Vertices);
             }
         }
 
         public void DrawPlanets3D()
         {
-            _state.SunCubeEffect.DrawIndexPrimitives(_state.SunCubeModel);
-            _state.MercuryCubeEffect.DrawIndexPrimitives(_state.MercuryCubeModel);
-            _state.VenusCubeEffect.DrawIndexPrimitives(_state.VenusCubeModel);
-            _state.EarthCubeEffect.DrawIndexPrimitives(_state.EarthCubeModel);
-            _state.MarsCubeEffect.DrawIndexPrimitives(_state.MarsCubeModel);
-            _state.MoonCubeEffect.DrawIndexPrimitives(_state.MoonCubeModel);
+            _state.SunCube.Effect.DrawIndexPrimitives(_state.SunCube.Model);
+            _state.MercuryCube.Effect.DrawIndexPrimitives(_state.MercuryCube.Model);
+            _state.VenusCube.Effect.DrawIndexPrimitives(_state.VenusCube.Model);
+            _state.EarthCube.Effect.DrawIndexPrimitives(_state.EarthCube.Model);
+            _state.MoonCube.Effect.DrawIndexPrimitives(_state.MoonCube.Model);
+            _state.MarsCube.Effect.DrawIndexPrimitives(_state.MarsCube.Model);
         }
 
         public void PerpareDrawer3D()

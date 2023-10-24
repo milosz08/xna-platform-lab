@@ -34,27 +34,26 @@ namespace XnaZal3
             viewMatrix = Matrix.CreateRotationX(_angleX) * Matrix.CreateRotationY(_angleY) * viewMatrix;
             projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50), _game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);
 
-            TransformCubeObject(_state.SunCubeEffect, _state.SunCubeModel);
-            TransformCubeObject(_state.MercuryCubeEffect, _state.MercuryCubeModel);
-            TransformCubeObject(_state.VenusCubeEffect, _state.VenusCubeModel);
-            TransformCubeObject(_state.EarthCubeEffect, _state.EarthCubeModel);
+            TransformCubeObject(_state.SunCube);
+            TransformCubeObject(_state.MercuryCube);
+            TransformCubeObject(_state.VenusCube);
+            TransformCubeObject(_state.EarthCube);
 
-            _state.MoonCubeModel.SetEarhPos(_state.EarthCubeModel.CurrentPos);
+            _state.MoonCube.Model.SetEarthPos(_state.EarthCube.Model.CurrentPos);
 
-            TransformCubeObject(_state.MarsCubeEffect, _state.MarsCubeModel);
-            TransformCubeObject(_state.MoonCubeEffect, _state.MoonCubeModel);
+            TransformCubeObject(_state.MoonCube);
+            TransformCubeObject(_state.MarsCube);
 
-            _state.MeshEffect.View = viewMatrix;
-            _state.MeshEffect.Projection = projection;           
+            _state.GridMesh.Effect.View = viewMatrix;
+            _state.GridMesh.Effect.Projection = projection;
         }
 
-        private void TransformCubeObject(GameSimpleEffect effect, AbstractCubeModel model)
+        private void TransformCubeObject<T>(ModelEffectBinder<T> binder)
+            where T : AbstractCubeModel
         {
-            effect.View = viewMatrix;
-            effect.Projection = model.GetProjectionMatrix(_game);
-
-            effect.World = (model.RotatingState *= Matrix.CreateRotationY(_state.VenusCubeModel.RotationSpeed))
-                * model.XDeviationMatrix * model.IncreaseAroundState();
+            binder.Effect.View = viewMatrix;
+            binder.Effect.Projection = binder.Model.GenerateProjectionMatrix(_game);
+            binder.Effect.World = binder.Model.GenerateWorldMatrix();
         }
 
         private void ChangeGridMeshAngle(KeyboardState keyboardState)
