@@ -7,13 +7,13 @@ namespace XnaZal3
         public bool HideMesh { get; set; }
         public bool EmptyBackground { get; set; }
 
-        public ModelEffectBinder<GridMeshModel> _gridMeshModel;
-        public ModelEffectBinder<SunCubeModel> _sunCubeModel;
-        public ModelEffectBinder<MercuryCubeModel> _mercuryCubeModel;
-        public ModelEffectBinder<VenusCubeModel> _venusCubeModel;
-        public ModelEffectBinder<EarthCubeModel> _earthCubeModel;
-        public ModelEffectBinder<MoonCubeModel> _moonCubeModel;
-        public ModelEffectBinder<MarsCubeModel> _marsCubeModel;
+        private readonly ModelEffectBinder<GridMeshModel> _gridMeshModel;
+        private readonly ModelEffectBinder<SunCubeModel> _sunCubeModel;
+        private readonly ModelEffectBinder<MercuryCubeModel> _mercuryCubeModel;
+        private readonly ModelEffectBinder<VenusCubeModel> _venusCubeModel;
+        private readonly ModelEffectBinder<EarthCubeModel> _earthCubeModel;
+        private readonly ModelEffectBinder<MoonCubeModel> _moonCubeModel;
+        private readonly ModelEffectBinder<MarsCubeModel> _marsCubeModel;
 
         public GameState(GameWindow game)
         {
