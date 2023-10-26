@@ -41,6 +41,7 @@ namespace XnaZal3
 
         protected override void Update(GameTime gameTime)
         {
+            _controller.ExitOnEsc();
             _controller.Interact();
             base.Update(gameTime);
         }
