@@ -32,8 +32,8 @@ namespace XnaZal3
             _viewMatrix = Matrix.CreateLookAt(new Vector3(
                 _angleZ * 0.1f, _angleZ * 1.0f, _angleZ * 6.0f), Vector3.Zero, Vector3.Up);
 
-            _viewMatrix = Matrix.CreateRotationX(_angleX) *
-                Matrix.CreateRotationY(_angleY) * _viewMatrix;
+            _viewMatrix = Matrix.CreateRotationX(_angleX)
+                * Matrix.CreateRotationY(_angleY) * _viewMatrix;
 
             _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50),
                 _game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000.0f);
