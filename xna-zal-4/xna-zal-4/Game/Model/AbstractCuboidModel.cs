@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace XnaZal4.Model
 {
     public abstract class AbstractCuboidModel
-        : AbstractMeshModel<VertexPositionNormalTexture>
+        : AbstractMeshModel<VertexPositionTexture>
     {
         protected readonly float _length;
         protected readonly float _baseSize;
@@ -20,7 +20,7 @@ namespace XnaZal4.Model
         };
 
         protected AbstractCuboidModel(float length, float baseSize)
-            : base(8)
+            : base(4)
         {
             _length = length;
             _baseSize = baseSize;
@@ -29,17 +29,16 @@ namespace XnaZal4.Model
 
         protected override void InitMeshStructure()
         {
-            Vector3 normal = Vector3.Normalize(new Vector3(0, 0, -1));
-            _vertices = new VertexPositionNormalTexture[8]
+            _vertices = new VertexPositionTexture[4]
             {
-                new VertexPositionNormalTexture(new Vector3(0, -_baseSize, -_baseSize), normal, new Vector2(0, 1)),           // lewy dolny tył
-                new VertexPositionNormalTexture(new Vector3(_length, -_baseSize, -_baseSize), normal, new Vector2(0, 0)),     // lewy dolny przód
-                new VertexPositionNormalTexture(new Vector3(_length, _baseSize, -_baseSize), normal, new Vector2(1, 0)),      // lewy górny przód
-                new VertexPositionNormalTexture(new Vector3(0, _baseSize, -_baseSize), normal, new Vector2(1, 1)),            // lewy górny tył
-                new VertexPositionNormalTexture(new Vector3(0, -_baseSize, _baseSize), normal, new Vector2(0, 1)),            // prawy dolny tył
-                new VertexPositionNormalTexture(new Vector3(_length, -_baseSize, _baseSize), normal, new Vector2(0, 0)),      // prawy dolny przód
-                new VertexPositionNormalTexture(new Vector3(_length, _baseSize, _baseSize), normal, new Vector2(1, 0)),       // prawy górny przód
-                new VertexPositionNormalTexture(new Vector3(0, _baseSize, _baseSize), normal, new Vector2(1, 1)),             // prawy górny tył
+                new VertexPositionTexture(new Vector3(0, -_baseSize, -_baseSize), new Vector2(0, 1)),           // lewy dolny tył
+                new VertexPositionTexture(new Vector3(_length, -_baseSize, -_baseSize), new Vector2(0, 0)),     // lewy dolny przód
+                new VertexPositionTexture(new Vector3(_length, _baseSize, -_baseSize), new Vector2(1, 0)),      // lewy górny przód
+                new VertexPositionTexture(new Vector3(0, _baseSize, -_baseSize), new Vector2(1, 1)),            // lewy górny tył
+                //new VertexPositionTexture(new Vector3(0, -_baseSize, _baseSize), new Vector2(0, 1)),            // prawy dolny tył
+                //new VertexPositionTexture(new Vector3(_length, -_baseSize, _baseSize), new Vector2(0, 0)),      // prawy dolny przód
+                //new VertexPositionTexture(new Vector3(_length, _baseSize, _baseSize), new Vector2(1, 0)),       // prawy górny przód
+                //new VertexPositionTexture(new Vector3(0, _baseSize, _baseSize), new Vector2(1, 1)),             // prawy górny tył
             };
         }
 

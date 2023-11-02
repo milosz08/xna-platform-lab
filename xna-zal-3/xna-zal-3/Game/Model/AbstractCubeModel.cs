@@ -19,7 +19,7 @@ namespace XnaZal3.Model
         protected readonly short[] _cubeIndices = new short[36]
         {
             0, 1, 2, 2, 1, 3,
-            1, 5, 3, 3, 5, 7,
+            1, 5, 2, 3, 5, 7,
             5, 4, 7, 7, 4, 6,
             4, 0, 6, 6, 0, 2,
             2, 3, 6, 6, 3, 7,

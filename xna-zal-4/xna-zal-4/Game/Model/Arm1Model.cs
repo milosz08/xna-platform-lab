@@ -13,8 +13,8 @@ namespace XnaZal4.Model
 
         public override Matrix GenerateWorldMatrix(GameController controller)
         {
-            return Matrix.CreateRotationY(MathHelper.ToRadians(controller.Arm1Pos.Y))
-                * Matrix.CreateRotationZ(MathHelper.ToRadians(controller.Arm1Pos.Z));
+            return Matrix.CreateRotationX(MathHelper.ToRadians(controller.Arm1Pos.Z))
+                * Matrix.CreateRotationY(MathHelper.ToRadians(controller.Arm1Pos.Y));
         }
     }
 }

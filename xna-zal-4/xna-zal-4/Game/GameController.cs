@@ -101,19 +101,13 @@ namespace XnaZal4
 
         private void RotateArm2(KeyboardState keyboardState)
         {
-            if (keyboardState.IsKeyDown(Keys.T)) // góra
+            if (keyboardState.IsKeyDown(Keys.T) && _arm2Pos.Z < ARM2_MAX_ANGLE) // góra
             {
-                if (_arm2Pos.Z < ARM2_MAX_ANGLE)
-                {
-                    _arm2Pos.Z += KEYPAD_ROTATE_SPEED;
-                }
+                _arm2Pos.Z += KEYPAD_ROTATE_SPEED;
             }
-            if (keyboardState.IsKeyDown(Keys.G)) // dół
+            if (keyboardState.IsKeyDown(Keys.G) && _arm2Pos.Z > -ARM2_MAX_ANGLE) // dół
             {
-                if (_arm2Pos.Z > -ARM2_MAX_ANGLE)
-                {
-                    _arm2Pos.Z -= KEYPAD_ROTATE_SPEED;
-                }
+                _arm2Pos.Z -= KEYPAD_ROTATE_SPEED;
             }
             if (keyboardState.IsKeyDown(Keys.R)) // obrót prawo
             {
@@ -151,19 +145,13 @@ namespace XnaZal4
 
         private void ChangeAxisLinesAngle(KeyboardState keyboardState)
         {
-            if (_angleZ >= BOTTOM_TOLERANCE)
+            if (keyboardState.IsKeyDown(Keys.Q) && _angleZ >= BOTTOM_TOLERANCE)
             {
-                if (keyboardState.IsKeyDown(Keys.Q))
-                {
-                    _angleZ -= ANGLE_ROTATION_SPEED;
-                }
+                _angleZ -= ANGLE_ROTATION_SPEED;
             }
-            if (_angleZ <= TOP_TOLERANCE)
+            if (keyboardState.IsKeyDown(Keys.A) && _angleZ <= TOP_TOLERANCE)
             {
-                if (keyboardState.IsKeyDown(Keys.A))
-                {
-                    _angleZ += ANGLE_ROTATION_SPEED;
-                }
+                _angleZ += ANGLE_ROTATION_SPEED;
             }
             if (keyboardState.IsKeyDown(Keys.Left))
             {
