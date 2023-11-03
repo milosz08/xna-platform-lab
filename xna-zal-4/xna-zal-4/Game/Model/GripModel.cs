@@ -22,11 +22,11 @@ namespace XnaZal4.Model
         public override Matrix GenerateWorldMatrix(GameController controller)
         {
             return Matrix.CreateRotationY(MathHelper.ToRadians(controller.GripPos.Y * _multipier))
-                * Matrix.CreateTranslation(Arm2Model.ARM_2_LENGTH, 0, 0)
-                * Matrix.CreateRotationZ(MathHelper.ToRadians(controller.Arm2Pos.Z))
+                * Matrix.CreateTranslation(0, 0, Arm2Model.ARM_2_LENGTH)
                 * Matrix.CreateRotationX(MathHelper.ToRadians(controller.Arm2Pos.X))
-                * Matrix.CreateTranslation(Arm1Model.ARM_1_LENGTH, 0, 0)
-                * Matrix.CreateRotationX(MathHelper.ToRadians(controller.Arm1Pos.Z))
+                * Matrix.CreateRotationZ(MathHelper.ToRadians(controller.Arm2Pos.Z))
+                * Matrix.CreateTranslation(0, 0, Arm1Model.ARM_1_LENGTH)
+                * Matrix.CreateRotationX(MathHelper.ToRadians(controller.Arm1Pos.X))
                 * Matrix.CreateRotationY(MathHelper.ToRadians(controller.Arm1Pos.Y));
         }
     }

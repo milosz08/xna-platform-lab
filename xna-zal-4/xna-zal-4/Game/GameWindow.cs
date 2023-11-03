@@ -46,10 +46,8 @@ namespace XnaZal4
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Transparent);
-            _spriteBatch.Begin();
-            _canvas.DrawBackground();
-            _spriteBatch.End();
+            GraphicsDevice.Clear(Color.PaleTurquoise);
+
             _canvas.PerpareDrawer3D();
             _canvas.DrawAxisLines3D();
             _canvas.DrawRobotArms3D();

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace XnaZal4
 {
@@ -10,22 +9,17 @@ namespace XnaZal4
         {
         }
 
-        public void DrawBackground()
-        {
-            _game.GraphicsDevice.Clear(Color.PaleTurquoise);
-        }
-
         public void DrawAxisLines3D()
         {
-            _state.AxisLines.Effect.DrawPrimitives(_state.AxisLines.Model.Vertices);
+            _state.AxisLines.Effect.DrawLinePrimitives(_state.AxisLines.Model.Vertices);
         }
 
         public void DrawRobotArms3D()
         {
-            _state.Arm1.Effect.DrawIndexPrimitives(_state.Arm1.Model);
-            _state.Arm2.Effect.DrawIndexPrimitives(_state.Arm2.Model);
-            _state.GripLeft.Effect.DrawIndexPrimitives(_state.GripLeft.Model);
-            _state.GripRight.Effect.DrawIndexPrimitives(_state.GripRight.Model);
+            _state.Arm1.Effect.DrawTrianglePrimitives(_state.Arm1.Model);
+            _state.Arm2.Effect.DrawTrianglePrimitives(_state.Arm2.Model);
+            _state.GripLeft.Effect.DrawTrianglePrimitives(_state.GripLeft.Model);
+            _state.GripRight.Effect.DrawTrianglePrimitives(_state.GripRight.Model);
         }
 
         public void PerpareDrawer3D()

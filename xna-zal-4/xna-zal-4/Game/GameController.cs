@@ -91,31 +91,31 @@ namespace XnaZal4
             }
             if (keyboardState.IsKeyDown(Keys.E)) // góra
             {
-                IncreaseOvalRotation(ref _arm1Pos.Z);
+                IncreaseOvalRotation(ref _arm1Pos.X);
             }
             if (keyboardState.IsKeyDown(Keys.D)) // dół
             {
-                DecreaseOvalRotation(ref _arm1Pos.Z);
+                DecreaseOvalRotation(ref _arm1Pos.X);
             }
         }
 
         private void RotateArm2(KeyboardState keyboardState)
         {
-            if (keyboardState.IsKeyDown(Keys.T) && _arm2Pos.Z < ARM2_MAX_ANGLE) // góra
+            if (keyboardState.IsKeyDown(Keys.T) && _arm2Pos.X < ARM2_MAX_ANGLE) // góra
             {
-                _arm2Pos.Z += KEYPAD_ROTATE_SPEED;
+                _arm2Pos.X += KEYPAD_ROTATE_SPEED;
             }
-            if (keyboardState.IsKeyDown(Keys.G) && _arm2Pos.Z > -ARM2_MAX_ANGLE) // dół
+            if (keyboardState.IsKeyDown(Keys.G) && _arm2Pos.X > -ARM2_MAX_ANGLE) // dół
             {
-                _arm2Pos.Z -= KEYPAD_ROTATE_SPEED;
+                _arm2Pos.X -= KEYPAD_ROTATE_SPEED;
             }
             if (keyboardState.IsKeyDown(Keys.R)) // obrót prawo
             {
-                IncreaseOvalRotation(ref _arm2Pos.X);
+                IncreaseOvalRotation(ref _arm2Pos.Z);
             }
             if (keyboardState.IsKeyDown(Keys.F)) // obrót lewo
             {
-                DecreaseOvalRotation(ref _arm2Pos.X);
+                DecreaseOvalRotation(ref _arm2Pos.Z);
             }
         }
 
