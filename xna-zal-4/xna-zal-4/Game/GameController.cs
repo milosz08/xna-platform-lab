@@ -12,6 +12,7 @@ namespace XnaZal4
         public static readonly float TOP_TOLERANCE = 15f;                          // blokada zwiększania siatki
         public static readonly float KEYPAD_ROTATE_SPEED = 1f;                     // szybkość obracania ramieniem
         public static readonly float ARM2_MAX_ANGLE = 60f;                         // maksymalne wychylenie ramienia 2
+        public static readonly float GRIP_MAX_ANGLE = 90f;                         // maksymalne otwarcie chwytaka
 
         private Matrix _viewMatrix, _projection;
         private Vector3 _arm1Pos = Vector3.Zero, _arm2Pos = Vector3.Zero;
@@ -65,7 +66,7 @@ namespace XnaZal4
         {
             if (keyboardState.IsKeyDown(Keys.Y)) // otwieranie 
             {
-                if (_gripPos.Y < ARM2_MAX_ANGLE)
+                if (_gripPos.Y < GRIP_MAX_ANGLE)
                 {
                     _gripPos.Y += KEYPAD_ROTATE_SPEED;
                 }
