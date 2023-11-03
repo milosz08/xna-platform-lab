@@ -9,6 +9,8 @@ namespace XnaZal4
         private readonly ModelEffectBinder<Arm2Model> _arm2;
         private readonly ModelEffectBinder<GripModel> _gripLeft;
         private readonly ModelEffectBinder<GripModel> _gripRight;
+        private readonly ModelEffectBinder<Grip2Model> _grip2Left;
+        private readonly ModelEffectBinder<Grip2Model> _grip2Right;
 
         public GameState(GameWindow game)
         {
@@ -17,6 +19,8 @@ namespace XnaZal4
             _arm2 = new ModelEffectBinder<Arm2Model>(new Arm2Model(), game, "metal2");
             _gripLeft = new ModelEffectBinder<GripModel>(new GripModel(), game, "metal3");
             _gripRight = new ModelEffectBinder<GripModel>(new GripModel(-1), game, "metal3");
+            _grip2Left = new ModelEffectBinder<Grip2Model>(new Grip2Model(), game, "metal3");
+            _grip2Right = new ModelEffectBinder<Grip2Model>(new Grip2Model(-1), game, "metal3");
         }
 
         public ModelEffectBinder<AxisLinesModel> AxisLines
@@ -42,6 +46,16 @@ namespace XnaZal4
         public ModelEffectBinder<GripModel> GripRight
         {
             get => _gripRight;
+        }
+
+        public ModelEffectBinder<Grip2Model> Grip2Left
+        {
+            get => _grip2Left;
+        }
+
+        public ModelEffectBinder<Grip2Model> Grip2Right
+        {
+            get => _grip2Right;
         }
     }
 }

@@ -17,6 +17,7 @@ namespace XnaZal4
         private Matrix _viewMatrix, _projection;
         private Vector3 _arm1Pos = Vector3.Zero, _arm2Pos = Vector3.Zero;
         private Vector2 _gripPos = Vector2.Zero;
+        private Vector2 _grip2Pos = Vector2.Zero;
 
         private float _angleX = INIT_CAMERA_ANGLE.X;
         private float _angleY = INIT_CAMERA_ANGLE.Y;
@@ -35,6 +36,7 @@ namespace XnaZal4
             RotateArm1(keyboardState);
             RotateArm2(keyboardState);
             OpenCloseGrips(keyboardState);
+            OpenCloseSecondGrips(keyboardState);
 
             _viewMatrix = Matrix.CreateLookAt(new Vector3(
                 _angleZ * 0.1f, _angleZ * 1.0f, _angleZ * 6.0f), Vector3.Zero, Vector3.Up);
@@ -49,6 +51,8 @@ namespace XnaZal4
             GenerateEffectMatrix(_state.Arm2);
             GenerateEffectMatrix(_state.GripLeft);
             GenerateEffectMatrix(_state.GripRight);
+            GenerateEffectMatrix(_state.Grip2Left);
+            GenerateEffectMatrix(_state.Grip2Right);
 
             _state.AxisLines.Effect.View = _viewMatrix;
             _state.AxisLines.Effect.Projection = _projection;
@@ -60,6 +64,24 @@ namespace XnaZal4
             binder.Effect.View = _viewMatrix;
             binder.Effect.World = binder.Model.GenerateWorldMatrix(this);
             binder.Effect.Projection = _projection;
+        }
+
+        private void OpenCloseSecondGrips(KeyboardState keyboardState)
+        {
+            if (keyboardState.IsKeyDown(Keys.U))
+            {
+                if (_grip2Pos.Y < GRIP_MAX_ANGLE)
+                {
+                    _grip2Pos.Y += KEYPAD_ROTATE_SPEED;
+                }
+            }
+            if (keyboardState.IsKeyDown(Keys.J))
+            {
+                if (_grip2Pos.Y > 0)
+                {
+                    _grip2Pos.Y -= KEYPAD_ROTATE_SPEED;
+                }
+            }
         }
 
         private void OpenCloseGrips(KeyboardState keyboardState)
@@ -193,6 +215,11 @@ namespace XnaZal4
         public Vector2 GripPos
         {
             get => _gripPos;
+        }
+
+        public Vector2 Grip2Pos
+        {
+            get => _grip2Pos;
         }
     }
 }

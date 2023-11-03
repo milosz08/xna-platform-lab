@@ -20,6 +20,8 @@ namespace XnaZal4
             _state.Arm2.Effect.DrawTrianglePrimitives(_state.Arm2.Model);
             _state.GripLeft.Effect.DrawTrianglePrimitives(_state.GripLeft.Model);
             _state.GripRight.Effect.DrawTrianglePrimitives(_state.GripRight.Model);
+            _state.Grip2Left.Effect.DrawTrianglePrimitives(_state.Grip2Left.Model);
+            _state.Grip2Right.Effect.DrawTrianglePrimitives(_state.Grip2Right.Model);
         }
 
         public void PerpareDrawer3D()
