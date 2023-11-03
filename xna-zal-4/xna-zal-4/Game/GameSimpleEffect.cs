@@ -21,10 +21,6 @@ namespace XnaZal4
             InitMatrix();
         }
 
-        Vector3[] frontFace;
-        VertexPositionTexture[] userPrimitives;
-
-
         public GameSimpleEffect(GameWindow game, string assetName)
             : base(game.GraphicsDevice)
         {
