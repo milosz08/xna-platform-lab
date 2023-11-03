@@ -23,8 +23,8 @@ namespace XnaZal4.Model
         {
             return Matrix.CreateRotationY(MathHelper.ToRadians(controller.GripPos.Y * _multipier))
                 * Matrix.CreateTranslation(0, 0, Arm2Model.ARM_2_LENGTH)
-                * Matrix.CreateRotationX(MathHelper.ToRadians(controller.Arm2Pos.X))
                 * Matrix.CreateRotationZ(MathHelper.ToRadians(controller.Arm2Pos.Z))
+                * Matrix.CreateRotationX(MathHelper.ToRadians(controller.Arm2Pos.X))
                 * Matrix.CreateTranslation(0, 0, Arm1Model.ARM_1_LENGTH)
                 * Matrix.CreateRotationX(MathHelper.ToRadians(controller.Arm1Pos.X))
                 * Matrix.CreateRotationY(MathHelper.ToRadians(controller.Arm1Pos.Y));
