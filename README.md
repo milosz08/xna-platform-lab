@@ -20,7 +20,7 @@ Monorepo contains XNA (Monogame) platform 2D and 3D examples created during CS s
 <img src=".github/zal4.gif" alt="">
 
 ## Author
-Created by Miłosz Gilga. If you have any questions about the application send message: personal@miloszgilga.pl.
+Created by Miłosz Gilga. If you have any questions about the application send message: [miloszgilga@gmail.com](mailto:miloszgilga@gmail.com).
 
 ## License
 This program is on GNU-GPL 3.0 license.
